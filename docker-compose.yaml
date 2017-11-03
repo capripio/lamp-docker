@@ -1,0 +1,15 @@
+version: '3'
+services: 
+  mysql:
+    build:  ./docker/mysql
+    ports:
+      - 3306:3306
+  linux:
+    build:  ./docker/linux
+    depends_on:
+      - mysql
+    ports:
+      - 80:80
+    volumes: 
+      - ./htdocs/:/var/www/html
+    tty: true
